@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خريطة المخاطر السيبرانية - أمانة منطقة حائل</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- الهيدر -->
+    <header>
+        <h1>خريطة المخاطر السيبرانية</h1>
+        <p>أمانة منطقة حائل</p>
+    </header>
+
+    <!-- التنقل -->
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">عن المشروع</a>
+        <a href="risks.html">المخاطر</a>
+        <a href="scenarios.html">السيناريوهات</a>
+    </nav>
+
+    <!-- الخريطة -->
+    <section class="map-container">
+        <h2>خريطة الاعتماديات</h2>
+        <div class="map">
+            <div class="node central" data-system="baladi">منصة بلدي</div>
+            <div class="node" data-system="website">موقع الأمانة</div>
+            <div class="node" data-system="app">حائل مدينتي</div>
+            <div class="node" data-system="licenses">نظام الرخص</div>
+            <div class="node" data-system="db">قاعدة البيانات</div>
+            <div class="node" data-system="api">API</div>
+            <div class="node" data-system="cloud">السحابة</div>
+        </div>
+    </section>
+
+    <!-- لوحة التفاصيل -->
+    <section class="details" id="details">
+        <h3>اختر نظاماً لعرض تفاصيله</h3>
+        <div id="details-content"></div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <p>©️ 2026 أمانة منطقة حائل</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
