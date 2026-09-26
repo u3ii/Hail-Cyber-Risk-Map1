@@ -417,3 +417,95 @@ document.addEventListener('keydown', (e) => {
         closePanel();
     }
 });
+
+// ===========================
+// REPORTS PAGE
+// ===========================
+function renderReports() {
+    const tableBody = document.getElementById('report-table-body');
+    if (!tableBody) return;
+    
+    // Count risks
+    let high = 0, medium = 0, low = 0;
+    
+    Object.keys(systemsData).forEach(key => {
+        const system = systemsData[key];
+        
+        // Count
+        if (system.riskLevel === 'high') high++;
+        else if (system.riskLevel === 'medium') medium++;
+        else low++;
+        
+        // Table row
+        const row = document.createElement('tr');
+        const riskLabel = system.riskLevel.charAt(0).toUpperCase() + system.riskLevel.slice(1);
+        row.innerHTML = `
+            <td><strong>${system.name}</strong></td>
+            <td>${system.type}</td>
+            <td><span class="risk-badge risk-${system.riskLevel}">${riskLabel}</span></td>
+            <td>${system.threats.length}</td>
+            <td>${system.controls.length}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+    
+    // Update summary cards
+    const total = high + medium + low;
+    document.getElementById('count-high').textContent = high;
+    document.getElementById('count-medium').textContent = medium;
+    document.getElementById('count-low').textContent = low;
+    document.getElementById('count-total').textContent = total;
+    
+    // Update chart bars
+    const highPercent = total > 0 ? Math.round((high / total) * 100) : 0;
+    const mediumPercent = total > 0 ? Math.round((medium / total) * 100) : 0;
+    const lowPercent = total > 0 ? Math.round((low / total) * 100) : 0;
+    
+    document.getElementById('bar-high').style.width = highPercent + '%';
+    document.getElementById('bar-medium').style.width = mediumPercent + '%';
+    document.getElementById('bar-low').style.width = lowPercent + '%';
+    
+    document.getElementById('bar-high-val').textContent = highPercent + '%';
+    document.getElementById('bar-medium-val').textContent = mediumPercent + '%';
+    document.getElementById('bar-low-val').textContent = lowPercent + '%';
+    
+    // AI Recommendations
+    const recs = document.getElementById('recommendations');
+    if (recs) {
+        recs.innerHTML = `
+            <div class="recommendation">
+                <div class="rec-icon">🔴</div>
+                <div class="rec-content">
+                    <h4>High Risk Systems Detected</h4>
+                    <p>${high} systems are classified as high risk. Prioritize these for immediate security review and hardening.</p>
+                </div>
+            </div>
+            <div class="recommendation">
+                <div class="rec-icon">🔗</div>
+                <div class="rec-content">
+                    <h4>Critical Dependencies</h4>
+                    <p>The Baladi Platform has the highest number of dependencies. A failure here would cascade across multiple systems. Consider redundancy.</p>
+                </div>
+            </div>
+            <div class="recommendation">
+                <div class="rec-icon">🛡️</div>
+                <div class="rec-content">
+                    <h4>Control Enhancement</h4>
+                    <p>Systems with fewer than 3 controls should be reviewed. Add encryption, monitoring, and access control layers.</p>
+                </div>
+            </div>
+            <div class="recommendation">
+                <div class="rec-icon">📊</div>
+                <div class="rec-content">
+                    <h4>Regular Assessment</h4>
+                    <p>Conduct dependency and risk assessments quarterly to keep this map up to date.</p>
+                </div>
+            </div>
+        `;
+    }
+}
+
+// Call in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
+    renderReports();
+});
