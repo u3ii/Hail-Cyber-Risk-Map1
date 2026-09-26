@@ -1,4 +1,3 @@
-
 const systemsData = {
     baladi: { name: "Baladi Platform", type: "Central Platform", riskLevel: "high", x: 500, y: 100,
         threats: ["DDoS", "Data Breach", "Phishing"], controls: ["Encryption", "Access Control", "Monitoring"],
@@ -25,46 +24,13 @@ const systemsData = {
 
 const riskColors = { high: "#E74C3C", medium: "#F39C12", low: "#27AE60" };
 
-// NAVIGATION
-document.querySelectorAll('.nav-link, [data-page]').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const page = system link.dataset.page;
-        if (page) showPage(page);
-    });
-});
-
-document.querySelectorAll('[data-goto]').forEach(el => {
-    el.addEventListener('click', () => showPage(el.dataset.goto));
-});
-
-function showPage(pageName) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-    
-    const page = document.getElementById('page-' + pageName);
-    if (page) page.classList.add('active');
-    
-    document.querySelectorAll('.nav-link').forEach(l => {
-        if (l.dataset.page === pageName) l.classList.add('active');
-    });
-    
-    if (pageName === 'map') renderMap();
-    if (pageName === 'assets') renderAssets();
-    if (pageName === 'reports') renderReports();
-    if (pageName === 'simulation') populateSystemSelect();
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-// ASSETS
 function renderAssets(filter = 'all') {
     const grid = document.getElementById('assets-grid');
     if (!grid) return;
     grid.innerHTML = '';
     
     Object.keys(systemsData).forEach(key => {
-        const = systemsData[key];
+        const system = systemsData[key];
         if (filter !== 'all' && system.riskLevel !== filter) return;
         
         const riskLabel = system.riskLevel.charAt(0).toUpperCase() + system.riskLevel.slice(1);
@@ -86,7 +52,6 @@ function renderAssets(filter = 'all') {
     });
 }
 
-// MODAL
 function openModal(key) {
     const system = systemsData[key];
     if (!system) return;
@@ -116,66 +81,66 @@ function openModal(key) {
             <h3>Impact if Failed</h3>
             <ul><li>${system.impact}</li></ul>
         </div>
+        <button class="btn btn-danger" onclick="goToSimulation('${key}')">Simulate Failure</button>
     `;
     document.getElementById('asset-modal').classList.add('active');
 }
 
 function closeModal() {
-    document.getElementById('asset-modal').classList.remove('active');
+    const modal = document.getElementById('asset-modal');
+    if (modal) modal.classList.remove('active');
 }
 
-// MAP
+function goToSimulation(key) {
+    window.location.href = `simulation.html?system=${key}`;
+}
+
 function renderMap() {
     const svg = document.getElementById('dependency-map');
     if (!svg) return;
     svg.innerHTML = '';
     
-    // Arrow marker
     const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
     defs.innerHTML = `<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#008F76"/></marker>`;
     svg.appendChild(defs);
     
-    // Edges
     Object.keys(systemsData).forEach(key => {
         const system = systemsData[key];
         system.dependencies.forEach(depKey => {
             const dep = systemsData[depKey];
             if (!dep) return;
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', system.x);
-            line.setAttribute('y1', system.y);
-            line.setAttribute('x2', dep.x);
-            line.setAttribute('y2', dep.y);
+            line.setAttribute('x1', system.x); line.setAttribute('y1', system.y);
+            line.setAttribute('x2', dep.x); line.setAttribute('y2', dep.y);
             line.setAttribute('stroke', '#008F76');
             line.setAttribute('stroke-width', '2');
             line.setAttribute('stroke-opacity', '0.4');
+            line.setAttribute('stroke-dasharray', '6 4');
             line.setAttribute('marker-end', 'url(#arrowhead)');
             svg.appendChild(line);
         });
     });
     
-    // Nodes
     Object.keys(systemsData).forEach(key => {
         const system = systemsData[key];
         const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         group.setAttribute('class', 'map-node');
         
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        circle.setAttribute('cx', system.x);
-        circle.setAttribute('cy', system.y);
-        circle.setAttribute('r', '40');
+        circle.setAttribute('cx', system.x); circle.setAttribute('cy', system.y);
+        circle.setAttribute('r', '42');
         circle.setAttribute('fill', 'white');
         circle.setAttribute('stroke', riskColors[system.riskLevel]);
         circle.setAttribute('stroke-width', '3');
         group.appendChild(circle);
         
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        text.setAttribute('x', system.x);
-        text.setAttribute('y', system.y + 5);
+        text.setAttribute('x', system.x); text.setAttribute('y', system.y + 5);
         text.setAttribute('text-anchor', 'middle');
         text.setAttribute('font-size', '11');
         text.setAttribute('font-weight', '600');
         text.setAttribute('fill', '#001D2B');
+        text.setAttribute('font-family', 'Inter, sans-serif');
         text.textContent = system.name.split(' ')[0];
         group.appendChild(text);
         
@@ -184,11 +149,10 @@ function renderMap() {
     });
 }
 
-// SIMULATION
 function populateSystemSelect() {
     const select = document.getElementById('system-select');
     if (!select) return;
-    if (select.options.length > 0) return;
+    if (select.options.length > 1) return;
     Object.keys(systemsData).forEach(key => {
         const option = document.createElement('option');
         option.value = key;
@@ -226,16 +190,16 @@ function runSimulation() {
         </div>
         <div class="result-block">
             <h3>Indirectly Affected (${affected.length})</h3>
-            ${affected.length > 0 ? affected.map(a => `<p>⚠️ ${a}</p>`).join('') : '<p>None</p>'}
+            ${affected.length > 0 ? affected.map(a => `<p>${a}</p>`).join('') : '<p>None</p>'}
         </div>
         <div class="result-block">
             <h3>Not Affected (${notAffected.length})</h3>
-            ${notAffected.length > 0 ? notAffected.map(a => `<p>✅ ${a}</p>`).join('') : '<p>None</p>'}
+            ${notAffected.length > 0 ? notAffected.map(a => `<p>${a}</p>`).join('') : '<p>None</p>'}
         </div>
         <div class="result-block">
             <h3>Impact Score</h3>
             <div class="impact-bar"><div class="impact-fill" style="width: ${impactPercent}%;"></div></div>
-            <p style="font-size: 24px; font-weight: 800; color: #008F76;">${impactPercent}%</p>
+            <p style="font-size: 24px; font-weight: 800; color: #008F76; font-family: 'Space Grotesk', sans-serif;">${impactPercent}%</p>
         </div>
         <div class="result-block">
             <h3>Scenario</h3>
@@ -244,7 +208,6 @@ function runSimulation() {
     `;
 }
 
-// REPORTS
 function renderReports() {
     const tableBody = document.getElementById('report-table-body');
     if (!tableBody) return;
@@ -270,16 +233,99 @@ function renderReports() {
         tableBody.appendChild(row);
     });
     
-    document.getElementById('count-high').textContent = high;
-    document.getElementById('count-medium').textContent = medium;
-    document.getElementById('count-low').textContent = low;
-    document.getElementById('count-total').textContent = high + medium + low;
+    const elHigh = document.getElementById('count-high');
+    const elMed = document.getElementById('count-medium');
+    const elLow = document.getElementById('count-low');
+    const elTotal = document.getElementById('count-total');
+    
+    if (elHigh) elHigh.textContent = high;
+    if (elMed) elMed.textContent = medium;
+    if (elLow) elLow.textContent = low;
+    if (elTotal) elTotal.textContent = high + medium + low;
+    
+    const recs = document.getElementById('recommendations');
+    if (!recs) return;
+    
+    const highRiskNames = Object.values(systemsData).filter(s => s.riskLevel === 'high').map(s => s.name);
+    const dependencyCounts = {};
+    Object.values(systemsData).forEach(s => s.dependencies.forEach(d => dependencyCounts[d] = (dependencyCounts[d] || 0) + 1));
+    
+    let html = '';
+    
+    if (high > 0) {
+        html += `
+            <div class="recommendation priority-high">
+                <div class="rec-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                        <line x1="12" y1="9" x2="12" y2="13"/>
+                        <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>High Risk Systems Detected</h4>
+                    <p>${high} system(s) classified as high risk. Prioritize these for immediate security review. Affected: ${highRiskNames.join(', ')}.</p>
+                </div>
+            </div>`;
+    }
+    
+    Object.keys(dependencyCounts).forEach(dep => {
+        if (dependencyCounts[dep] >= 2) {
+            html += `
+                <div class="recommendation priority-medium">
+                    <div class="rec-icon">
+                        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                        </svg>
+                    </div>
+                    <div class="rec-content">
+                        <h4>Critical Dependencies</h4>
+                        <p>${systemsData[dep].name} has ${dependencyCounts[dep]} dependents. Consider adding redundancy to avoid single point of failure.</p>
+                    </div>
+                </div>`;
+        }
+    });
+    
+    const weakControls = Object.values(systemsData).filter(s => s.controls.length < 3);
+    if (weakControls.length > 0) {
+        html += `
+            <div class="recommendation priority-medium">
+                <div class="rec-icon">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                </div>
+                <div class="rec-content">
+                    <h4>Weak Controls Detected</h4>
+                    <p>${weakControls.length} system(s) have fewer than 3 security controls. Consider adding encryption, monitoring, and access control layers.</p>
+                </div>
+            </div>`;
+    }
+    
+    html += `
+        <div class="recommendation priority-low">
+            <div class="rec-icon">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+            </div>
+            <div class="rec-content">
+                <h4>Regular Assessment</h4>
+                <p>Conduct dependency and risk assessments quarterly to keep this map up to date.</p>
+            </div>
+        </div>`;
+    
+    recs.innerHTML = html;
 }
 
-// FILTERS
 document.addEventListener('DOMContentLoaded', () => {
     renderAssets();
     populateSystemSelect();
+    renderMap();
+    renderReports();
     
     document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -288,6 +334,13 @@ document.addEventListener('DOMContentLoaded', () => {
             renderAssets(btn.dataset.filter);
         });
     });
+    
+    const params = new URLSearchParams(window.location.search);
+    const systemParam = params.get('system');
+    if (systemParam) {
+        const select = document.getElementById('system-select');
+        if (select) select.value = systemParam;
+    }
 });
 
 document.addEventListener('keydown', (e) => {
