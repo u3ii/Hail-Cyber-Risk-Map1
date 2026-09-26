@@ -1,1 +1,110 @@
 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Cyber Risk Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="images/logo2.png" alt="Hail Municipality" class="header-logo">
+    </header>
+
+    <div class="project-title">
+        <h1>Cyber Risk Map</h1>
+        <p>Hail Municipality</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="assets.html">Assets</a>
+        <a href="map.html">Map</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="reports.html" class="active">Reports</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div class="page-header">
+        <h1>Reports</h1>
+        <p>Overview of systems, risks, and AI recommendations</p>
+    </div>
+
+    <div class="summary-cards">
+        <div class="summary-card">
+            <div class="summary-number" id="count-high">0</div>
+            <div class="summary-label">High Risk</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number" id="count-medium">0</div>
+            <div class="summary-label">Medium Risk</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number" id="count-low">0</div>
+            <div class="summary-label">Low Risk</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-number" id="count-total">0</div>
+            <div class="summary-label">Total</div>
+        </div>
+    </div>
+
+    <div class="report-section">
+        <h2>Systems Overview</h2>
+        <table class="report-table">
+            <thead>
+                <tr>
+                    <th>System</th>
+                    <th>Type</th>
+                    <th>Risk Level</th>
+                    <th>Threats</th>
+                    <th>Controls</th>
+                </tr>
+            </thead>
+            <tbody id="report-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="report-section">
+        <h2>AI Recommendations</h2>
+        <div class="recommendations" id="recommendations"></div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="images/logo2.png" alt="Hail Municipality" class="footer-logo">
+                <h3>Cyber Risk Map</h3>
+                <p>Hail Municipality</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="assets.html">Assets</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="simulation.html">Simulation</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>References</h4>
+                <ul>
+                    <li>National Cybersecurity Authority (NCA)</li>
+                    <li>Essential Cybersecurity Controls (ECC)</li>
+                    <li>Saudi Data & AI Authority (SDAIA)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©️ 2026 Hail Municipality - All Rights Reserved</p>
+            <p>Cybersecurity Department</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
