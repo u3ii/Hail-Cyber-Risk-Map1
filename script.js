@@ -1,108 +1,76 @@
 
-// ===========================
-// SYSTEMS DATA
-// ===========================
 const systemsData = {
-    baladi: {
-        name: "Baladi Platform",
-        type: "Central Platform",
-        riskLevel: "high",
-        x: 500, y: 100,
-        threats: ["DDoS", "Data Breach", "Phishing"],
-        controls: ["Encryption", "Access Control", "Monitoring"],
-        dependencies: ["website", "app", "licenses"],
-        impact: "Shutdown of all connected municipality services"
-    },
-    website: {
-        name: "Municipality Website",
-        type: "Website",
-        riskLevel: "medium",
-        x: 200, y: 300,
-        threats: ["Defacement", "Phishing"],
-        controls: ["SSL Encryption", "Firewall"],
-        dependencies: ["api"],
-        impact: "Loss of online services access"
-    },
-    app: {
-        name: "Hail Madinati App",
-        type: "Mobile App",
-        riskLevel: "medium",
-        x: 500, y: 300,
-        threats: ["Reverse Engineering", "Data Leak"],
-        controls: ["Encryption", "Authentication"],
-        dependencies: ["api"],
-        impact: "Citizens cannot use mobile services"
-    },
-    licenses: {
-        name: "Licenses System",
-        type: "Service System",
-        riskLevel: "high",
-        x: 800, y: 300,
-        threats: ["Data Breach", "Downtime"],
-        controls: ["Encryption", "Backup", "Access Control"],
-        dependencies: ["db"],
-        impact: "Cannot issue licenses for citizens"
-    },
-    db: {
-        name: "Database",
-        type: "Data Layer",
-        riskLevel: "high",
-        x: 300, y: 500,
-        threats: ["Data Leak", "Ransomware"],
-        controls: ["Encryption", "Backup"],
-        dependencies: ["cloud"],
-        impact: "Loss of citizen data"
-    },
-    api: {
-        name: "API Gateway",
-        type: "Integration Layer",
-        riskLevel: "medium",
-        x: 600, y: 500,
-        threats: ["Downtime", "Unauthorized Access"],
-        controls: ["Encryption", "Authentication"],
-        dependencies: ["cloud"],
-        impact: "Integration between systems fails"
-    },
-    cloud: {
-        name: "Cloud Infrastructure",
-        type: "Infrastructure",
-        riskLevel: "high",
-        x: 900, y: 500,
-        threats: ["Outage", "Misconfiguration"],
-        controls: ["Encryption", "Trusted Provider"],
-        dependencies: [],
-        impact: "All services go down"
-    }
+    baladi: { name: "Baladi Platform", type: "Central Platform", riskLevel: "high", x: 500, y: 100,
+        threats: ["DDoS", "Data Breach", "Phishing"], controls: ["Encryption", "Access Control", "Monitoring"],
+        dependencies: ["website", "app", "licenses"], impact: "Shutdown of all connected municipality services" },
+    website: { name: "Municipality Website", type: "Website", riskLevel: "medium", x: 200, y: 300,
+        threats: ["Defacement", "Phishing"], controls: ["SSL Encryption", "Firewall"],
+        dependencies: ["api"], impact: "Loss of online services access" },
+    app: { name: "Hail Madinati App", type: "Mobile App", riskLevel: "medium", x: 500, y: 300,
+        threats: ["Reverse Engineering", "Data Leak"], controls: ["Encryption", "Authentication"],
+        dependencies: ["api"], impact: "Citizens cannot use mobile services" },
+    licenses: { name: "Licenses System", type: "Service System", riskLevel: "high", x: 800, y: 300,
+        threats: ["Data Breach", "Downtime"], controls: ["Encryption", "Backup", "Access Control"],
+        dependencies: ["db"], impact: "Cannot issue licenses for citizens" },
+    db: { name: "Database", type: "Data Layer", riskLevel: "high", x: 300, y: 500,
+        threats: ["Data Leak", "Ransomware"], controls: ["Encryption", "Backup"],
+        dependencies: ["cloud"], impact: "Loss of citizen data" },
+    api: { name: "API Gateway", type: "Integration Layer", riskLevel: "medium", x: 600, y: 500,
+        threats: ["Downtime", "Unauthorized Access"], controls: ["Encryption", "Authentication"],
+        dependencies: ["cloud"], impact: "Integration between systems fails" },
+    cloud: { name: "Cloud Infrastructure", type: "Infrastructure", riskLevel: "high", x: 900, y: 500,
+        threats: ["Outage", "Misconfiguration"], controls: ["Encryption", "Trusted Provider"],
+        dependencies: [], impact: "All services go down" }
 };
 
-// ===========================
-// RISK COLORS
-// ===========================
-const riskColors = {
-    high: "#E74C3C",
-    medium: "#F39C12",
-    low: "#27AE60"
-};
+const riskColors = { high: "#E74C3C", medium: "#F39C12", low: "#27AE60" };
 
-// ===========================
-// ASSETS PAGE
-// ===========================
+// NAVIGATION
+document.querySelectorAll('.nav-link, [data-page]').forEach(link => {
+    link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const page = system link.dataset.page;
+        if (page) showPage(page);
+    });
+});
+
+document.querySelectorAll('[data-goto]').forEach(el => {
+    el.addEventListener('click', () => showPage(el.dataset.goto));
+});
+
+function showPage(pageName) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    
+    const page = document.getElementById('page-' + pageName);
+    if (page) page.classList.add('active');
+    
+    document.querySelectorAll('.nav-link').forEach(l => {
+        if (l.dataset.page === pageName) l.classList.add('active');
+    });
+    
+    if (pageName === 'map') renderMap();
+    if (pageName === 'assets') renderAssets();
+    if (pageName === 'reports') renderReports();
+    if (pageName === 'simulation') populateSystemSelect();
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ASSETS
 function renderAssets(filter = 'all') {
     const grid = document.getElementById('assets-grid');
     if (!grid) return;
-    
     grid.innerHTML = '';
     
     Object.keys(systemsData).forEach(key => {
-        const system = systemsData[key];
+        const = systemsData[key];
         if (filter !== 'all' && system.riskLevel !== filter) return;
         
         const riskLabel = system.riskLevel.charAt(0).toUpperCase() + system.riskLevel.slice(1);
-        
         const card = document.createElement('div');
         card.className = 'asset-card';
         card.onclick = () => openModal(key);
-        
         card.innerHTML = `
             <div class="asset-header">
                 <div class="asset-name">${system.name}</div>
@@ -114,25 +82,17 @@ function renderAssets(filter = 'all') {
                 <p><strong>Controls:</strong> ${system.controls.length}</p>
             </div>
         `;
-        
         grid.appendChild(card);
     });
 }
 
-// ===========================
 // MODAL
-// ===========================
 function openModal(key) {
     const system = systemsData[key];
     if (!system) return;
     
-    const modal = document.getElementById('asset-modal');
-    const title = document.getElementById('modal-title');
-    const body = document.getElementById('modal-body');
-    
-    title.textContent = system.name;
-    
-    body.innerHTML = `
+    document.getElementById('modal-title').textContent = system.name;
+    document.getElementById('modal-body').innerHTML = `
         <div class="modal-section">
             <h3>Overview</h3>
             <ul>
@@ -140,60 +100,47 @@ function openModal(key) {
                 <li><strong>Risk Level:</strong> ${system.riskLevel.toUpperCase()}</li>
             </ul>
         </div>
-        
         <div class="modal-section">
             <h3>Threats</h3>
             <ul>${system.threats.map(t => `<li>${t}</li>`).join('')}</ul>
         </div>
-        
         <div class="modal-section">
             <h3>Controls</h3>
             <ul>${system.controls.map(c => `<li>${c}</li>`).join('')}</ul>
         </div>
-        
         <div class="modal-section">
             <h3>Dependencies</h3>
             <ul>${system.dependencies.length > 0 ? system.dependencies.map(d => `<li>${systemsData[d].name}</li>`).join('') : '<li>None</li>'}</ul>
         </div>
-        
         <div class="modal-section">
             <h3>Impact if Failed</h3>
             <ul><li>${system.impact}</li></ul>
         </div>
-        
-        <button class="btn btn-danger" onclick="goToSimulation('${key}')">
-            Simulate Failure
-        </button>
     `;
-    
-    modal.classList.add('active');
+    document.getElementById('asset-modal').classList.add('active');
 }
 
 function closeModal() {
-    const modal = document.getElementById('asset-modal');
-    if (modal) modal.classList.remove('active');
+    document.getElementById('asset-modal').classList.remove('active');
 }
 
-function goToSimulation(key) {
-    window.location.href = `simulation.html?system=${key}`;
-}
-
-// ===========================
-// MAP PAGE
-// ===========================
+// MAP
 function renderMap() {
     const svg = document.getElementById('dependency-map');
     if (!svg) return;
-    
     svg.innerHTML = '';
     
-    // Draw edges (dependencies)
+    // Arrow marker
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `<marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#008F76"/></marker>`;
+    svg.appendChild(defs);
+    
+    // Edges
     Object.keys(systemsData).forEach(key => {
         const system = systemsData[key];
         system.dependencies.forEach(depKey => {
             const dep = systemsData[depKey];
             if (!dep) return;
-            
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', system.x);
             line.setAttribute('y1', system.y);
@@ -207,26 +154,12 @@ function renderMap() {
         });
     });
     
-    // Arrow marker
-    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
-    defs.innerHTML = `
-        <marker id="arrowhead" markerWidth="10" markerHeight="7" 
-                refX="9" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" fill="#008F76" />
-        </marker>
-    `;
-    svg.appendChild(defs);
-    
-    // Draw nodes (systems)
+    // Nodes
     Object.keys(systemsData).forEach(key => {
         const system = systemsData[key];
-        
         const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
         group.setAttribute('class', 'map-node');
-        group.setAttribute('data-key', key);
-        group.style.cursor = 'pointer';
         
-        // Circle
         const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         circle.setAttribute('cx', system.x);
         circle.setAttribute('cy', system.y);
@@ -236,74 +169,26 @@ function renderMap() {
         circle.setAttribute('stroke-width', '3');
         group.appendChild(circle);
         
-        // Text
         const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         text.setAttribute('x', system.x);
         text.setAttribute('y', system.y + 5);
         text.setAttribute('text-anchor', 'middle');
-        text.setAttribute('font-size', '12');
+        text.setAttribute('font-size', '11');
         text.setAttribute('font-weight', '600');
         text.setAttribute('fill', '#001D2B');
         text.textContent = system.name.split(' ')[0];
         group.appendChild(text);
         
-        group.addEventListener('click', () => openPanel(key));
+        group.addEventListener('click', () => openModal(key));
         svg.appendChild(group);
     });
 }
 
-function openPanel(key) {
-    const system = systemsData[key];
-    if (!system) return;
-    
-    const panel = document.getElementById('side-panel');
-    const title = document.getElementById('panel-title');
-    const content = document.getElementById('panel-content');
-    
-    title.textContent = system.name;
-    
-    const dependents = Object.keys(systemsData).filter(k => 
-        systemsData[k].dependencies.includes(key)
-    );
-    
-    content.innerHTML = `
-        <div class="modal-section">
-            <h3>Type</h3>
-            <ul><li>${system.type}</li></ul>
-        </div>
-        <div class="modal-section">
-            <h3>Risk Level</h3>
-            <ul><li>${system.riskLevel.toUpperCase()}</li></ul>
-        </div>
-        <div class="modal-section">
-            <h3>Depends On (${system.dependencies.length})</h3>
-            <ul>${system.dependencies.length > 0 ? system.dependencies.map(d => `<li>${systemsData[d].name}</li>`).join('') : '<li>None</li>'}</ul>
-        </div>
-        <div class="modal-section">
-            <h3>Depended By (${dependents.length})</h3>
-            <ul>${dependents.length > 0 ? dependents.map(d => `<li>${systemsData[d].name}</li>`).join('') : '<li>None</li>'}</ul>
-        </div>
-        <div class="modal-section">
-            <h3>Impact</h3>
-            <ul><li>${system.impact}</li></ul>
-        </div>
-    `;
-    
-    panel.classList.add('active');
-}
-
-function closePanel() {
-    const panel = document.getElementById('side-panel');
-    if (panel) panel.classList.remove('active');
-}
-
-// ===========================
-// SIMULATION PAGE
-// ===========================
+// SIMULATION
 function populateSystemSelect() {
     const select = document.getElementById('system-select');
     if (!select) return;
-    
+    if (select.options.length > 0) return;
     Object.keys(systemsData).forEach(key => {
         const option = document.createElement('option');
         option.value = key;
@@ -323,122 +208,58 @@ function runSimulation() {
     }
     
     const system = systemsData[systemKey];
-    
-    // Find affected systems
-    const affected = [];
-    const notAffected = [];
+    const affected = [], notAffected = [];
     
     Object.keys(systemsData).forEach(key => {
         if (key === systemKey) return;
-        if (systemsData[key].dependencies.includes(systemKey)) {
-            affected.push(systemsData[key].name);
-        } else {
-            notAffected.push(systemsData[key].name);
-        }
+        if (systemsData[key].dependencies.includes(systemKey)) affected.push(systemsData[key].name);
+        else notAffected.push(systemsData[key].name);
     });
     
-    const impactPercent = Math.round((affected.length / (Object.keys(systemsData).length - 1)) * 100);
+    const total = Object.keys(systemsData).length - 1;
+    const impactPercent = total > 0 ? Math.round((affected.length / total) * 100) : 0;
     
     results.innerHTML = `
         <div class="result-block">
             <h3>Directly Affected</h3>
             <p style="color: #E74C3C; font-weight: bold;">${system.name}</p>
         </div>
-        
         <div class="result-block">
             <h3>Indirectly Affected (${affected.length})</h3>
             ${affected.length > 0 ? affected.map(a => `<p>⚠️ ${a}</p>`).join('') : '<p>None</p>'}
         </div>
-        
         <div class="result-block">
             <h3>Not Affected (${notAffected.length})</h3>
             ${notAffected.length > 0 ? notAffected.map(a => `<p>✅ ${a}</p>`).join('') : '<p>None</p>'}
         </div>
-        
         <div class="result-block">
             <h3>Impact Score</h3>
-            <div class="impact-bar">
-                <div class="impact-fill" style="width: ${impactPercent}%;"></div>
-            </div>
+            <div class="impact-bar"><div class="impact-fill" style="width: ${impactPercent}%;"></div></div>
             <p style="font-size: 24px; font-weight: 800; color: #008F76;">${impactPercent}%</p>
         </div>
-        
         <div class="result-block">
             <h3>Scenario</h3>
             <p>${scenario.toUpperCase()}</p>
         </div>
-        
-        <button class="btn" onclick="resetSimulation()">Reset</button>
     `;
 }
 
-function resetSimulation() {
-    document.getElementById('system-select').value = '';
-    document.getElementById('results-content').innerHTML = 
-        '<p>Select a system and scenario, then click "Run Simulation".</p>';
-}
-
-// ===========================
-// INIT
-// ===========================
-document.addEventListener('DOMContentLoaded', () => {
-    // Assets page
-    renderAssets();
-    
-    // Filters
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderAssets(btn.dataset.filter);
-        });
-    });
-    
-    // Map page
-    renderMap();
-    
-    // Simulation page
-    populateSystemSelect();
-    
-    // Check URL params for simulation
-    const params = new URLSearchParams(window.location.search);
-    const systemParam = params.get('system');
-    if (systemParam) {
-        const select = document.getElementById('system-select');
-        if (select) select.value = systemParam;
-    }
-});
-
-// Close modal/panel on ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeModal();
-        closePanel();
-    }
-});
-
-// ===========================
-// REPORTS PAGE
-// ===========================
+// REPORTS
 function renderReports() {
     const tableBody = document.getElementById('report-table-body');
     if (!tableBody) return;
+    tableBody.innerHTML = '';
     
-    // Count risks
     let high = 0, medium = 0, low = 0;
     
     Object.keys(systemsData).forEach(key => {
         const system = systemsData[key];
-        
-        // Count
         if (system.riskLevel === 'high') high++;
         else if (system.riskLevel === 'medium') medium++;
         else low++;
         
-        // Table row
-        const row = document.createElement('tr');
         const riskLabel = system.riskLevel.charAt(0).toUpperCase() + system.riskLevel.slice(1);
+        const row = document.createElement('tr');
         row.innerHTML = `
             <td><strong>${system.name}</strong></td>
             <td>${system.type}</td>
@@ -449,63 +270,26 @@ function renderReports() {
         tableBody.appendChild(row);
     });
     
-    // Update summary cards
-    const total = high + medium + low;
     document.getElementById('count-high').textContent = high;
     document.getElementById('count-medium').textContent = medium;
     document.getElementById('count-low').textContent = low;
-    document.getElementById('count-total').textContent = total;
-    
-    // Update chart bars
-    const highPercent = total > 0 ? Math.round((high / total) * 100) : 0;
-    const mediumPercent = total > 0 ? Math.round((medium / total) * 100) : 0;
-    const lowPercent = total > 0 ? Math.round((low / total) * 100) : 0;
-    
-    document.getElementById('bar-high').style.width = highPercent + '%';
-    document.getElementById('bar-medium').style.width = mediumPercent + '%';
-    document.getElementById('bar-low').style.width = lowPercent + '%';
-    
-    document.getElementById('bar-high-val').textContent = highPercent + '%';
-    document.getElementById('bar-medium-val').textContent = mediumPercent + '%';
-    document.getElementById('bar-low-val').textContent = lowPercent + '%';
-    
-    // AI Recommendations
-    const recs = document.getElementById('recommendations');
-    if (recs) {
-        recs.innerHTML = `
-            <div class="recommendation">
-                <div class="rec-icon">🔴</div>
-                <div class="rec-content">
-                    <h4>High Risk Systems Detected</h4>
-                    <p>${high} systems are classified as high risk. Prioritize these for immediate security review and hardening.</p>
-                </div>
-            </div>
-            <div class="recommendation">
-                <div class="rec-icon">🔗</div>
-                <div class="rec-content">
-                    <h4>Critical Dependencies</h4>
-                    <p>The Baladi Platform has the highest number of dependencies. A failure here would cascade across multiple systems. Consider redundancy.</p>
-                </div>
-            </div>
-            <div class="recommendation">
-                <div class="rec-icon">🛡️</div>
-                <div class="rec-content">
-                    <h4>Control Enhancement</h4>
-                    <p>Systems with fewer than 3 controls should be reviewed. Add encryption, monitoring, and access control layers.</p>
-                </div>
-            </div>
-            <div class="recommendation">
-                <div class="rec-icon">📊</div>
-                <div class="rec-content">
-                    <h4>Regular Assessment</h4>
-                    <p>Conduct dependency and risk assessments quarterly to keep this map up to date.</p>
-                </div>
-            </div>
-        `;
-    }
+    document.getElementById('count-total').textContent = high + medium + low;
 }
 
-// Call in DOMContentLoaded
+// FILTERS
 document.addEventListener('DOMContentLoaded', () => {
-    renderReports();
+    renderAssets();
+    populateSystemSelect();
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderAssets(btn.dataset.filter);
+        });
+    });
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
 });
