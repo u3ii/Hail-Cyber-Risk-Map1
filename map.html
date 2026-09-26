@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependency Map | Cyber Risk Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-title">
+            <h1>Dependency Map</h1>
+            <p>Cyber Risk Map</p>
+        </div>
+        <img src="images/logo.png" alt="Hail Municipality" class="header-logo">
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="assets.html">Assets</a>
+        <a href="map.html" class="active">Map</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="reports.html">Reports</a>
+    </nav>
+
+    <div class="page-header">
+        <h1>System Dependency Map</h1>
+        <p>Visual representation of how systems depend on each other</p>
+    </div>
+
+    <!-- MAP CONTAINER -->
+    <div class="map-wrapper">
+        <svg id="dependency-map" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg">
+            <!-- Filled by JavaScript -->
+        </svg>
+    </div>
+
+    <!-- SIDE PANEL -->
+    <div class="side-panel" id="side-panel">
+        <button class="panel-close" onclick="closePanel()">×</button>
+        <h2 id="panel-title">Select a System</h2>
+        <div id="panel-content">
+            <p>Click on any node to view details.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="images/logo.png" alt="Hail Municipality" class="footer-logo">
+                <h3>Cyber Risk Map</h3>
+                <p>Hail Municipality</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="assets.html">Assets</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="simulation.html">Simulation</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>References</h4>
+                <ul>
+                    <li>National Cybersecurity Authority (NCA)</li>
+                    <li>Essential Cybersecurity Controls (ECC)</li>
+                    <li>Saudi Data & AI Authority (SDAIA)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©️ 2026 Hail Municipality - All Rights Reserved</p>
+            <p>Cybersecurity Department</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
