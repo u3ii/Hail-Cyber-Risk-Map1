@@ -1,1 +1,94 @@
 
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation | Cyber Risk Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <img src="images/logo2.png" alt="Hail Municipality" class="header-logo">
+    </header>
+
+    <div class="project-title">
+        <h1>Cyber Risk Map</h1>
+        <p>Hail Municipality</p>
+    </div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="assets.html">Assets</a>
+        <a href="map.html">Map</a>
+        <a href="simulation.html" class="active">Simulation</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <div class="page-header">
+        <h1>What-If Simulation</h1>
+        <p>Run scenarios and see the impact across systems</p>
+    </div>
+
+    <div class="simulation-layout">
+        <div class="sim-input">
+            <h2>Simulation Input</h2>
+            <label for="system-select">Select System</label>
+            <select id="system-select">
+                <option value="">-- Choose a System --</option>
+            </select>
+            <label for="scenario-select">Select Scenario</label>
+            <select id="scenario-select">
+                <option value="failure">Complete Failure</option>
+                <option value="breach">Data Breach</option>
+                <option value="ddos">DDoS Attack</option>
+                <option value="ransomware">Ransomware</option>
+            </select>
+            <button class="btn" onclick="runSimulation()">Run Simulation</button>
+        </div>
+        <div class="sim-results">
+            <h2>Simulation Results</h2>
+            <div id="results-content">
+                <p>Select a system and scenario, then click "Run Simulation".</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="images/logo2.png" alt="Hail Municipality" class="footer-logo">
+                <h3>Cyber Risk Map</h3>
+                <p>Hail Municipality</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="assets.html">Assets</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="simulation.html">Simulation</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>References</h4>
+                <ul>
+                    <li>National Cybersecurity Authority (NCA)</li>
+                    <li>Essential Cybersecurity Controls (ECC)</li>
+                    <li>Saudi Data & AI Authority (SDAIA)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>©️ 2026 Hail Municipality - All Rights Reserved</p>
+            <p>Cybersecurity Department</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
