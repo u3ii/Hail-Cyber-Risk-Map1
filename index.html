@@ -10,240 +10,125 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
-        <div class="header-content">
-            <img src="images/logo.png" alt="Hail Municipality" class="header-logo">
-            <div class="header-text">
-                <h1>Cyber Risk Map</h1>
-                <p>Hail Municipality</p>
-            </div>
-        </div>
+        <img src="images/logo2.png" alt="Hail Municipality" class="header-logo">
     </header>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#" data-page="home" class="nav-link active">Home</a>
-        <a href="#" data-page="assets" class="nav-link">Assets</a>
-        <a href="#" data-page="map" class="nav-link">Map</a>
-        <a href="#" data-page="simulation" class="nav-link">Simulation</a>
-        <a href="#" data-page="reports" class="nav-link">Reports</a>
-        <a href="#" data-page="about" class="nav-link">About</a>
-    </nav>
-
-    <!-- MAIN CONTENT -->
-    <main>
-
-        <!-- HOME PAGE -->
-        <section id="page-home" class="page active">
-            <div class="hero">
-                <h1>Cyber Risk Map</h1>
-                <p>Interactive platform to analyze system dependencies and assess impact across Hail Municipality infrastructure.</p>
-            </div>
-            <div class="cards-grid">
-                <div class="card" data-goto="assets">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-                            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-                            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-                            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
-                        </svg>
-                    </div>
-                    <h3>Assets</h3>
-                    <p>Browse all systems and services with their security status</p>
-                </div>
-                <div class="card" data-goto="map">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="6" r="2.5"/>
-                            <circle cx="6" cy="18" r="2.5"/>
-                            <circle cx="18" cy="18" r="2.5"/>
-                            <line x1="12" y1="6" x2="6" y2="18"/>
-                            <line x1="12" y1="6" x2="18" y2="18"/>
-                            <line x1="6" y1="18" x2="18" y2="18"/>
-                        </svg>
-                    </div>
-                    <h3>Dependency Map</h3>
-                    <p>Visualize how systems depend on each other</p>
-                </div>
-                <div class="card" data-goto="simulation">
-                    <div class="card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <polygon points="5,3 19,12 5,21"/>
-                        </svg>
-                    </div>
-                    <h3>Simulation</h3>
-                    <p>Run what-if scenarios and see the impact</p>
-                </div>
-            </div>
-            <div class="stats-bar">
-                <div class="stat-item">
-                    <div class="stat-number">7</div>
-                    <div class="stat-label">Systems</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Dependencies</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Scenarios</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ASSETS PAGE -->
-        <section id="page-assets" class="page">
-            <div class="page-header">
-                <h1>Assets</h1>
-                <p>Browse all systems with their security status</p>
-            </div>
-            <div class="filters">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="high">High</button>
-                <button class="filter-btn" data-filter="medium">Medium</button>
-                <button class="filter-btn" data-filter="low">Low</button>
-            </div>
-            <div class="assets-grid" id="assets-grid"></div>
-        </section>
-
-        <!-- MAP PAGE -->
-        <section id="page-map" class="page">
-            <div class="page-header">
-                <h1>Dependency Map</h1>
-                <p>Visual representation of how systems depend on each other</p>
-            </div>
-            <div class="map-wrapper">
-                <svg id="dependency-map" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg"></svg>
-            </div>
-        </section>
-
-        <!-- SIMULATION PAGE -->
-        <section id="page-simulation" class="page">
-            <div class="page-header">
-                <h1>What-If Simulation</h1>
-                <p>Run scenarios and see the impact across systems</p>
-            </div>
-            <div class="simulation-layout">
-                <div class="sim-input">
-                    <h2>Simulation Input</h2>
-                    <label for="system-select">Select System:</label>
-                    <select id="system-select"></select>
-                    <label for="scenario-select">Select Scenario:</label>
-                    <select id="scenario-select">
-                        <option value="failure">Complete Failure</option>
-                        <option value="breach">Data Breach</option>
-                        <option value="ddos">DDoS Attack</option>
-                        <option value="ransomware">Ransomware</option>
-                    </select>
-                    <button class="btn" onclick="runSimulation()">Run Simulation</button>
-                </div>
-                <div class="sim-results">
-                    <h2>Simulation Results</h2>
-                    <div id="results-content">
-                        <p>Select a system and scenario, then click "Run Simulation".</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- REPORTS PAGE -->
-        <section id="page-reports" class="page">
-            <div class="page-header">
-                <h1>Reports</h1>
-                <p>Overview of systems, risks, and recommendations</p>
-            </div>
-            <div class="summary-cards">
-                <div class="summary-card">
-                    <div class="summary-number" id="count-high">0</div>
-                    <div class="summary-label">High Risk</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-number" id="count-medium">0</div>
-                    <div class="summary-label">Medium Risk</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-number" id="count-low">0</div>
-                    <div class="summary-label">Low Risk</div>
-                </div>
-                <div class="summary-card">
-                    <div class="summary-number" id="count-total">0</div>
-                    <div class="summary-label">Total</div>
-                </div>
-            </div>
-            <div class="report-section">
-                <h2>Systems Overview</h2>
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th>System</th>
-                            <th>Type</th>
-                            <th>Risk Level</th>
-                            <th>Threats</th>
-                            <th>Controls</th>
-                        </tr>
-                    </thead>
-                    <tbody id="report-table-body"></tbody>
-                </table>
-            </div>
-        </section>
-
-        <!-- ABOUT PAGE -->
-        <section id="page-about" class="page">
-            <div class="page-header">
-                <h1>About</h1>
-                <p>About the Cyber Risk Map project</p>
-            </div>
-            <div class="about-content">
-                <div class="about-section">
-                    <h2>Overview</h2>
-                    <p>The Cyber Risk Map is an interactive platform designed to visualize the dependencies between systems at Hail Municipality. It helps the cybersecurity department understand how a failure or breach in one system can affect others.</p>
-                </div>
-                <div class="about-section">
-                    <h2>Methodology</h2>
-                    <p>The project follows the standards and guidelines of the National Cybersecurity Authority (NCA), specifically the Essential Cybersecurity Controls (ECC).</p>
-                </div>
-                <div class="about-section">
-                    <h2>References</h2>
-                    <ul>
-                        <li>National Cybersecurity Authority (NCA)</li>
-                        <li>Essential Cybersecurity Controls (ECC)</li>
-                        <li>Saudi Data & AI Authority (SDAIA)</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- MODAL -->
-    <div class="modal" id="asset-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modal-title">System Details</h2>
-                <button class="modal-close" onclick="closeModal()">×</button>
-            </div>
-            <div id="modal-body"></div>
-        </div>
+    <div class="project-title">
+        <h1>Cyber Risk Map</h1>
+        <p>Hail Municipality</p>
     </div>
 
-    <!-- FOOTER -->
+    <nav>
+        <a href="index.html" class="active">Home</a>
+        <a href="assets.html">Assets</a>
+        <a href="map.html">Map</a>
+        <a href="simulation.html">Simulation</a>
+        <a href="reports.html">Reports</a>
+        <a href="about.html">About</a>
+    </nav>
+
+    <section class="hero">
+        <p>Interactive platform to analyze system dependencies and assess impact across Hail Municipality infrastructure.</p>
+    </section>
+
+    <section class="cards-grid">
+        <a href="assets.html" class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+                </svg>
+            </div>
+            <h3>Assets</h3>
+            <p>Browse all systems and services with their security status</p>
+        </a>
+
+        <a href="map.html" class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="6" r="2.5"/>
+                    <circle cx="6" cy="18" r="2.5"/>
+                    <circle cx="18" cy="18" r="2.5"/>
+                    <line x1="12" y1="6" x2="6" y2="18"/>
+                    <line x1="12" y1="6" x2="18" y2="18"/>
+                    <line x1="6" y1="18" x2="18" y2="18"/>
+                </svg>
+            </div>
+            <h3>Dependency Map</h3>
+            <p>Visualize how systems depend on each other</p>
+        </a>
+
+        <a href="simulation.html" class="card">
+            <div class="card-icon">
+                <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="5,3 19,12 5,21"/>
+                </svg>
+            </div>
+            <h3>Simulation</h3>
+            <p>Run what-if scenarios and see the impact</p>
+        </a>
+    </section>
+
+    <section class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-circle"></div>
+            <svg class="stat-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="6" rx="1.5"/>
+                <rect x="2" y="15" width="20" height="6" rx="1.5"/>
+                <circle cx="6" cy="6" r="1" fill="currentColor"/>
+                <circle cx="6" cy="18" r="1" fill="currentColor"/>
+            </svg>
+            <div class="stat-number">7</div>
+            <div class="stat-label">Systems</div>
+        </div>
+
+        <div class="stat-line"></div>
+
+        <div class="stat-item">
+            <div class="stat-circle"></div>
+            <svg class="stat-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="6" r="2.5"/>
+                <circle cx="6" cy="18" r="2.5"/>
+                <circle cx="18" cy="18" r="2.5"/>
+                <line x1="12" y1="6" x2="6" y2="18"/>
+                <line x1="12" y1="6" x2="18" y2="18"/>
+                <line x1="6" y1="18" x2="18" y2="18"/>
+            </svg>
+            <div class="stat-number">12</div>
+            <div class="stat-label">Dependencies</div>
+        </div>
+
+        <div class="stat-line"></div>
+
+        <div class="stat-item">
+            <div class="stat-circle"></div>
+            <svg class="stat-icon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5,3 19,12 5,21"/>
+            </svg>
+            <div class="stat-number">5</div>
+            <div class="stat-label">Scenarios</div>
+        </div>
+    </section>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="images/logo.png" alt="Hail Municipality" class="footer-logo">
+                <img src="images/logo2.png" alt="Hail Municipality" class="footer-logo">
                 <h3>Cyber Risk Map</h3>
                 <p>Hail Municipality</p>
             </div>
             <div class="footer-section">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="#" data-page="home">Home</a></li>
-                    <li><a href="#" data-page="assets">Assets</a></li>
-                    <li><a href="#" data-page="map">Map</a></li>
-                    <li><a href="#" data-page="simulation">Simulation</a></li>
-                    <li><a href="#" data-page="reports">Reports</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="assets.html">Assets</a></li>
+                    <li><a href="map.html">Map</a></li>
+                    <li><a href="simulation.html">Simulation</a></li>
+                    <li><a href="reports.html">Reports</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -261,6 +146,5 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
