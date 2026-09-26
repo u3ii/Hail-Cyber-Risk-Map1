@@ -986,7 +986,6 @@ footer::before {
     height: 60px;
     object-fit: contain;
     margin-bottom: 15px;
-    filter: brightness(0) invert(1);
 }
 
 .footer-section h3 {
