@@ -985,7 +985,7 @@ footer::before {
     width: 100px;
     height: 100px;
     object-fit: contain;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .footer-section h3 {
