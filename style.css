@@ -973,7 +973,7 @@ footer::before {
 
 .footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 1fr 1fr;
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -982,10 +982,10 @@ footer::before {
 }
 
 .footer-logo {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .footer-section h3 {
