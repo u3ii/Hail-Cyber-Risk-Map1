@@ -1,81 +1,68 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulation | Cyber Risk Map</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simulation | Cyber Risk Map</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<div class="cyber-dots">
+<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
+<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
+</div>
+
 <header class="main-header">
-    <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-    <div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
-    <div class="header-spacer"></div>
+<button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+<div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
+<div class="header-spacer"></div>
 </header>
 
 <nav class="side-menu" id="sideMenu">
-    <div class="menu-header">
-        <img src="images/logo2.png" alt="Hail Municipality">
-        <button class="close-btn" onclick="toggleMenu()">×</button>
-    </div>
-    <ul class="menu-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="assets.html">Assets</a></li>
-        <li><a href="map.html">Map</a></li>
-        <li><a href="simulation.html" class="active">Simulation</a></li>
-        <li><a href="reports.html">Reports</a></li>
-        <li><a href="about.html">About</a></li>
-    </ul>
+<div class="menu-header">
+<img src="images/logo2.png" alt="Hail Municipality">
+<button class="close-btn" onclick="toggleMenu()">×</button>
+</div>
+<ul class="menu-links">
+<li><a href="index.html">Home</a></li>
+<li><a href="assets.html">Assets</a></li>
+<li><a href="map.html">Map</a></li>
+<li><a href="simulation.html" class="active">Simulation</a></li>
+<li><a href="reports.html">Reports</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
 </nav>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
 <main>
-    <div class="section-header">
-        <h2>What-If Simulation</h2>
-        <p>Select a system and a scenario to see the impact</p>
-    </div>
-
-    <div class="simulation-grid">
-        <div class="sim-input">
-            <label>Select System</label>
-            <select id="simSystem">
-                <option value="">-- Choose a System --</option>
-            </select>
-
-            <label>Select Scenario</label>
-            <select id="simScenario">
-                <option value="failure">Complete Failure</option>
-                <option value="breach">Data Breach</option>
-                <option value="ddos">DDoS Attack</option>
-                <option value="ransomware">Ransomware</option>
-            </select>
-
-            <button class="btn-primary" onclick="runSimulation()">Run Simulation</button>
-        </div>
-
-        <div class="sim-results" id="simResults">
-            <p class="placeholder">Select a system and scenario, then click "Run Simulation".</p>
-        </div>
-    </div>
+<div class="section-header"><h2>What-If Simulation</h2><p>Select a system and scenario to see the impact</p></div>
+<div class="simulation-grid">
+<div class="sim-input">
+<label>Select System</label>
+<select id="simSystem"><option value="">-- Choose a System --</option></select>
+<label>Select Scenario</label>
+<select id="simScenario">
+<option value="failure">Complete Failure</option>
+<option value="breach">Data Breach</option>
+<option value="ddos">DDoS Attack</option>
+<option value="ransomware">Ransomware</option>
+</select>
+<button class="btn-primary" onclick="runSimulation()">Run Simulation</button>
+</div>
+<div class="sim-results" id="simResults">
+<p class="placeholder">Select a system and scenario, then click "Run Simulation".</p>
+</div>
+</div>
 </main>
 
 <footer class="main-footer">
-    <div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
-    <div class="footer-references">
-        <h4>References</h4>
-        <ul>
-            <li>National Cybersecurity Authority (NCA)</li>
-            <li>Essential Cybersecurity Controls (ECC)</li>
-            <li>Saudi Data & AI Authority (SDAIA)</li>
-        </ul>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-copyright">
-        <p>©️ 2026 Hail Municipality — Cyber Risk Map</p>
-        <p>All Rights Reserved</p>
-    </div>
+<div class="footer-content">
+<div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
+<div class="footer-references"><h4>References</h4><ul><li>NCA</li><li>ECC</li><li>SDAIA</li></ul></div>
+</div>
+<div class="footer-divider"></div>
+<div class="footer-copyright"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div>
 </footer>
 
 <script src="script.js"></script>
