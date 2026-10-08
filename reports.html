@@ -1,76 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Reports | Cyber Risk Map</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Map</title><link rel="stylesheet" href="style.css"></head>
 <body>
-
-<div class="cyber-dots">
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-</div>
-
-<header class="main-header">
-<button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-<div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
-<div class="header-spacer"></div>
-</header>
-
-<nav class="side-menu" id="sideMenu">
-<div class="menu-header">
-<img src="images/logo2.png" alt="Hail Municipality">
-<button class="close-btn" onclick="toggleMenu()">×</button>
-</div>
-<ul class="menu-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="assets.html">Assets</a></li>
-<li><a href="map.html">Map</a></li>
-<li><a href="simulation.html">Simulation</a></li>
-<li><a href="reports.html" class="active">Reports</a></li>
-<li><a href="about.html">About</a></li>
-</ul>
-</nav>
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<header><button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="h-logo"><img src="images/logo2.png" alt="Hail Municipality"></div><div class="h-spacer"></div></header>
+<nav class="side-menu" id="sideMenu"><div class="m-hd"><img src="images/logo2.png" alt="Hail Municipality"><button class="close-btn" onclick="toggleMenu()">×</button></div><ul><li><a href="index.html">Home</a></li><li><a href="assets.html">Assets</a></li><li><a href="map.html" class="active">Map</a></li><li><a href="simulation.html">Simulation</a></li><li><a href="reports.html">Reports</a></li><li><a href="about.html">About</a></li></ul></nav>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
 <main>
-<div class="section-header"><h2>Reports</h2><p>Overview of systems, risks, and recommendations</p></div>
-
-<div class="summary-row">
-<div class="summary-card"><div class="summary-num" id="countHigh">0</div><div class="summary-lbl">High</div></div>
-<div class="summary-card"><div class="summary-num" id="countMedium">0</div><div class="summary-lbl">Medium</div></div>
-<div class="summary-card"><div class="summary-num" id="countLow">0</div><div class="summary-lbl">Low</div></div>
-<div class="summary-card"><div class="summary-num" id="countTotal">0</div><div class="summary-lbl">Total</div></div>
-</div>
-
-<div class="report-block">
-<h3>Systems Overview</h3>
-<div class="table-wrapper">
-<table class="report-table">
-<thead><tr><th>System</th><th>Type</th><th>Risk</th><th>Threats</th><th>Controls</th></tr></thead>
-<tbody id="reportTableBody"></tbody>
-</table>
-</div>
-</div>
-
-<div class="report-block">
-<h3>Recommendations</h3>
-<div id="recommendations" class="recommendations"></div>
-</div>
+<div class="ph"><h2>Dependency Map</h2><p>Click on any system to trace its dependencies</p></div>
+<div class="mc"><svg id="depMap" viewBox="0 0 900 800" xmlns="http://www.w3.org/2000/svg"></svg></div>
+<div class="ap"><h3>Analysis</h3><div id="analysisText" class="aph">Click on any system in the map to see its dependencies and impact.</div></div>
 </main>
-
-<footer class="main-footer">
-<div class="footer-content">
-<div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
-<div class="footer-references"><h4>References</h4><ul><li>NCA</li><li>ECC</li><li>SDAIA</li></ul></div>
-</div>
-<div class="footer-divider"></div>
-<div class="footer-copyright"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div>
-</footer>
-
+<footer><div class="fc"><div class="fl"><img src="images/logo1.png" alt="Hail Municipality"></div><div class="fr"><h4>References</h4><ul><li>National Cybersecurity Authority (NCA)</li><li>Essential Cybersecurity Controls (ECC)</li><li>Saudi Data & AI Authority (SDAIA)</li></ul></div></div><div class="fd"></div><div class="fcop"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div></footer>
 <script src="script.js"></script>
 </body>
 </html>
