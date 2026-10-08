@@ -1,111 +1,84 @@
 
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<header>
-    <div class="header-content">
-        <div class="logo-container">
-            <img src="images/logo2.png" alt="Hail Municipality" class="logo">
-        </div>
-    </div>
-</header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports | Cyber Risk Map</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <body>
 
-    <header>
-        <img src="logo2.png" alt="Hail Municipality" class="header-logo">
-    </header>
+<header class="main-header">
+    <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
+    <div class="header-spacer"></div>
+</header>
 
-    <div class="project-title">
-        <h1>Cyber Risk Map</h1>
-        <p>Hail Municipality</p>
+<nav class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <img src="images/logo2.png" alt="Hail Municipality">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <ul class="menu-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="simulation.html">Simulation</a></li>
+        <li><a href="reports.html" class="active">Reports</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<main>
+    <div class="section-header">
+        <h2>Reports</h2>
+        <p>Overview of systems, risks, and recommendations</p>
     </div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="assets.html">Assets</a>
-        <a href="map.html">Map</a>
-        <a href="simulation.html">Simulation</a>
-        <a href="reports.html" class="active">Reports</a>
-        <a href="about.html">About</a>
-    </nav>
-
-    <div class="page-header">
-        <h1>Reports</h1>
-        <p>Overview of systems, risks, and AI recommendations</p>
+    <div class="summary-row">
+        <div class="summary-card"><div class="summary-num" id="countHigh">0</div><div class="summary-lbl">High Risk</div></div>
+        <div class="summary-card"><div class="summary-num" id="countMedium">0</div><div class="summary-lbl">Medium Risk</div></div>
+        <div class="summary-card"><div class="summary-num" id="countLow">0</div><div class="summary-lbl">Low Risk</div></div>
+        <div class="summary-card"><div class="summary-num" id="countTotal">0</div><div class="summary-lbl">Total</div></div>
     </div>
 
-    <div class="summary-cards">
-        <div class="summary-card">
-            <div class="summary-number" id="count-high">0</div>
-            <div class="summary-label">High Risk</div>
-        </div>
-        <div class="summary-card">
-            <div class="summary-number" id="count-medium">0</div>
-            <div class="summary-label">Medium Risk</div>
-        </div>
-        <div class="summary-card">
-            <div class="summary-number" id="count-low">0</div>
-            <div class="summary-label">Low Risk</div>
-        </div>
-        <div class="summary-card">
-            <div class="summary-number" id="count-total">0</div>
-            <div class="summary-label">Total</div>
+    <div class="report-block">
+        <h3>Systems Overview</h3>
+        <div class="table-wrapper">
+            <table class="report-table">
+                <thead>
+                    <tr><th>System</th><th>Type</th><th>Risk</th><th>Threats</th><th>Controls</th></tr>
+                </thead>
+                <tbody id="reportTableBody"></tbody>
+            </table>
         </div>
     </div>
 
-    <div class="report-section">
-        <h2>Systems Overview</h2>
-        <table class="report-table">
-            <thead>
-                <tr>
-                    <th>System</th>
-                    <th>Type</th>
-                    <th>Risk Level</th>
-                    <th>Threats</th>
-                    <th>Controls</th>
-                </tr>
-            </thead>
-            <tbody id="report-table-body"></tbody>
-        </table>
+    <div class="report-block">
+        <h3>Smart Recommendations</h3>
+        <div id="recommendations" class="recommendations"></div>
     </div>
+</main>
 
-    <div class="report-section">
-        <h2>AI Recommendations</h2>
-        <div class="recommendations" id="recommendations"></div>
+<footer class="main-footer">
+    <div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
+    <div class="footer-references">
+        <h4>References</h4>
+        <ul>
+            <li>National Cybersecurity Authority (NCA)</li>
+            <li>Essential Cybersecurity Controls (ECC)</li>
+            <li>Saudi Data & AI Authority (SDAIA)</li>
+        </ul>
     </div>
+    <div class="footer-divider"></div>
+    <div class="footer-copyright">
+        <p>©️ 2026 Hail Municipality — Cyber Risk Map</p>
+        <p>All Rights Reserved</p>
+    </div>
+</footer>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="logo1.png" alt="Hail Municipality" class="footer-logo">
-                <h3>Cyber Risk Map</h3>
-                <p>Hail Municipality</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="assets.html">Assets</a></li>
-                    <li><a href="map.html">Map</a></li>
-                    <li><a href="simulation.html">Simulation</a></li>
-                    <li><a href="reports.html">Reports</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>References</h4>
-                <ul>
-                    <li>National Cybersecurity Authority (NCA)</li>
-                    <li>Essential Cybersecurity Controls (ECC)</li>
-                    <li>Saudi Data & AI Authority (SDAIA)</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>©️ 2026 Hail Municipality - All Rights Reserved</p>
-            <p>Cybersecurity Department</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
