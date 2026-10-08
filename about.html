@@ -1,59 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Cyber Risk Map</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About</title><link rel="stylesheet" href="style.css"></head>
 <body>
-
-<div class="cyber-dots">
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-</div>
-
-<header class="main-header">
-<button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-<div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
-<div class="header-spacer"></div>
-</header>
-
-<nav class="side-menu" id="sideMenu">
-<div class="menu-header">
-<img src="images/logo2.png" alt="Hail Municipality">
-<button class="close-btn" onclick="toggleMenu()">×</button>
-</div>
-<ul class="menu-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="assets.html">Assets</a></li>
-<li><a href="map.html">Map</a></li>
-<li><a href="simulation.html">Simulation</a></li>
-<li><a href="reports.html">Reports</a></li>
-<li><a href="about.html" class="active">About</a></li>
-</ul>
-</nav>
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<header><button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="h-logo"><img src="images/logo2.png" alt="Hail Municipality"></div><div class="h-spacer"></div></header>
+<nav class="side-menu" id="sideMenu"><div class="m-hd"><img src="images/logo2.png" alt="Hail Municipality"><button class="close-btn" onclick="toggleMenu()">×</button></div><ul><li><a href="index.html">Home</a></li><li><a href="assets.html">Assets</a></li><li><a href="map.html">Map</a></li><li><a href="simulation.html">Simulation</a></li><li><a href="reports.html">Reports</a></li><li><a href="about.html" class="active">About</a></li></ul></nav>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
 <main>
-<div class="section-header"><h2>About the Project</h2><p>Cyber Risk Map - Hail Municipality</p></div>
-<div class="about-wrapper">
-<div class="about-card"><h3>Overview</h3><p>An interactive platform to visualize the dependencies between systems at Hail Municipality, helping the cybersecurity team understand how a failure in one system can affect others.</p></div>
-<div class="about-card"><h3>Problem</h3><p>Multiple interconnected systems, but no clear tool showing dependencies between them. When an incident occurs, it's hard to identify affected systems quickly.</p></div>
-<div class="about-card"><h3>Solution</h3><ul><li>Asset Inventory - Complete list of systems with status.</li><li>Dependency Map - Visual graph of dependencies.</li><li>Simulation - Test failures and see impact.</li><li>Reports - Automated risk assessment.</li></ul></div>
-<div class="about-card"><h3>References</h3><ul><li>National Cybersecurity Authority (NCA)</li><li>Essential Cybersecurity Controls (ECC)</li><li>Saudi Data & AI Authority (SDAIA)</li></ul></div>
+<div class="ph"><h2>About the Project</h2><p>Cyber Risk Map - Hail Municipality</p></div>
+<div class="aw">
+<div class="abc"><h3>Overview</h3><p>An interactive platform to visualize the dependencies between systems at Hail Municipality, helping the cybersecurity team understand how a failure in one system can affect others.</p></div>
+<div class="abc"><h3>Problem</h3><p>Multiple interconnected systems, but no clear tool showing dependencies between them. When an incident occurs, it's hard to identify affected systems quickly.</p></div>
+<div class="abc"><h3>Solution</h3><ul><li>Asset Inventory - Complete list of systems with status.</li><li>Dependency Map - Visual graph of dependencies.</li><li>Simulation - Test failures and see impact.</li><li>Reports - Automated risk assessment.</li></ul></div>
+<div class="abc"><h3>References</h3><ul><li>National Cybersecurity Authority (NCA)</li><li>Essential Cybersecurity Controls (ECC)</li><li>Saudi Data & AI Authority (SDAIA)</li></ul></div>
 </div>
 </main>
-
-<footer class="main-footer">
-<div class="footer-content">
-<div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
-<div class="footer-references"><h4>References</h4><ul><li>NCA</li><li>ECC</li><li>SDAIA</li></ul></div>
-</div>
-<div class="footer-divider"></div>
-<div class="footer-copyright"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div>
-</footer>
-
+<footer><div class="fc"><div class="fl"><img src="images/logo1.png" alt="Hail Municipality"></div><div class="fr"><h4>References</h4><ul><li>National Cybersecurity Authority (NCA)</li><li>Essential Cybersecurity Controls (ECC)</li><li>Saudi Data & AI Authority (SDAIA)</li></ul></div></div><div class="fd"></div><div class="fcop"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div></footer>
 <script src="script.js"></script>
 </body>
 </html>
