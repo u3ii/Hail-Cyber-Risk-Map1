@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -9,100 +8,83 @@
 </head>
 <body>
 
-    <header>
-    <div class="header-content">
-        <div class="logo-container">
-            <img src="images/logo2.png" alt="Hail Municipality" class="logo">
-        </div>
-    </div>
+<header class="main-header">
+    <button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+    <div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
+    <div class="header-spacer"></div>
 </header>
- <div class="project-title">
-     <h1>Cyber Risk Map</h1>
-     <p>Hail Municipality</p>
- </div> 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="assets.html">Assets</a>
-        <a href="map.html">Map</a>
-        <a href="simulation.html">Simulation</a>
-        <a href="reports.html">Reports</a>
-        <a href="about.html" class="active">About</a>
-    </nav>
 
-    <div class="page-header">
-        <h1>About the Project</h1>
+<nav class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <img src="images/logo2.png" alt="Hail Municipality">
+        <button class="close-btn" onclick="toggleMenu()">×</button>
+    </div>
+    <ul class="menu-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Assets</a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="simulation.html">Simulation</a></li>
+        <li><a href="reports.html">Reports</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+    </ul>
+</nav>
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<main>
+    <div class="section-header">
+        <h2>About the Project</h2>
         <p>Cyber Risk Map - Hail Municipality</p>
     </div>
 
-    <div class="about-content">
-        <div class="about-section">
-            <h2>Overview</h2>
-            <p>The Cyber Risk Map is an interactive platform designed to visualize the dependencies between systems at Hail Municipality. It helps the cybersecurity department understand how a failure or breach in one system can affect others, enabling proactive risk management and informed decision-making.</p>
+    <div class="about-wrapper">
+        <div class="about-card">
+            <h3>Overview</h3>
+            <p>The Cyber Risk Map is an interactive platform designed to visualize the dependencies between systems at Hail Municipality. It helps the cybersecurity department understand how a failure or breach in one system can affect others.</p>
         </div>
-        <div class="about-section">
-            <h2>Problem</h2>
-            <p>Municipalities operate multiple interconnected systems, but there is no clear tool that shows how these systems depend on each other. When an incident occurs, it's hard to quickly identify which systems are affected and what the overall impact will be.</p>
+
+        <div class="about-card">
+            <h3>Problem</h3>
+            <p>Municipalities operate multiple interconnected systems, but there is no clear tool that shows how these systems depend on each other. When an incident occurs, it's hard to quickly identify which systems are affected.</p>
         </div>
-        <div class="about-section">
-            <h2>Solution</h2>
+
+        <div class="about-card">
+            <h3>Solution</h3>
             <ul>
-                <li><strong>Asset Inventory:</strong> A complete list of systems with their security status.</li>
-                <li><strong>Dependency Map:</strong> A visual graph showing how systems depend on each other.</li>
-                <li><strong>What-If Simulation:</strong> A tool to simulate failures and see the impact.</li>
-                <li><strong>AI Reports:</strong> Automated risk assessment and recommendations.</li>
+                <li>Asset Inventory - A complete list of systems with their status.</li>
+                <li>Dependency Map - A visual graph showing dependencies.</li>
+                <li>What-If Simulation - Test failures and see the impact.</li>
+                <li>Smart Reports - Automated risk assessment.</li>
             </ul>
         </div>
-        <div class="about-section">
-            <h2>Methodology</h2>
-            <p>The project follows the standards and guidelines of the National Cybersecurity Authority (NCA), specifically the Essential Cybersecurity Controls (ECC). The risk assessment model evaluates each system based on threats, vulnerabilities, existing controls, dependencies, and criticality to business operations.</p>
-        </div>
-        <div class="about-section">
-            <h2>References</h2>
+
+        <div class="about-card">
+            <h3>References</h3>
             <ul>
                 <li>National Cybersecurity Authority (NCA)</li>
                 <li>Essential Cybersecurity Controls (ECC)</li>
                 <li>Saudi Data & AI Authority (SDAIA)</li>
-                <li>National Institute of Standards and Technology (NIST)</li>
             </ul>
         </div>
-        <div class="about-section">
-            <h2>Contact</h2>
-            <p><strong>Cybersecurity Department</strong><br>Hail Municipality<br>Hail, Saudi Arabia</p>
-        </div>
     </div>
+</main>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <img src="images/logo1.png" alt="Hail Municipality" class="footer-logo">
-                <h3>Cyber Risk Map</h3>
-                <p>Hail Municipality</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="assets.html">Assets</a></li>
-                    <li><a href="map.html">Map</a></li>
-                    <li><a href="simulation.html">Simulation</a></li>
-                    <li><a href="reports.html">Reports</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>References</h4>
-                <ul>
-                    <li>National Cybersecurity Authority (NCA)</li>
-                    <li>Essential Cybersecurity Controls (ECC)</li>
-                    <li>Saudi Data & AI Authority (SDAIA)</li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>©️ 2026 Hail Municipality - All Rights Reserved</p>
-            <p>Cybersecurity Department</p>
-        </div>
-    </footer>
+<footer class="main-footer">
+    <div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
+    <div class="footer-references">
+        <h4>References</h4>
+        <ul>
+            <li>National Cybersecurity Authority (NCA)</li>
+            <li>Essential Cybersecurity Controls (ECC)</li>
+            <li>Saudi Data & AI Authority (SDAIA)</li>
+        </ul>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-copyright">
+        <p>©️ 2026 Hail Municipality — Cyber Risk Map</p>
+        <p>All Rights Reserved</p>
+    </div>
+</footer>
 
+<script src="script.js"></script>
 </body>
 </html>
