@@ -1,68 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assets | Cyber Risk Map</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Assets</title><link rel="stylesheet" href="style.css"></head>
 <body>
-
-<div class="cyber-dots">
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-<span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span><span class="cyber-dot"></span>
-</div>
-
-<header class="main-header">
-<button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
-<div class="header-logo"><img src="images/logo2.png" alt="Hail Municipality"></div>
-<div class="header-spacer"></div>
-</header>
-
-<nav class="side-menu" id="sideMenu">
-<div class="menu-header">
-<img src="images/logo2.png" alt="Hail Municipality">
-<button class="close-btn" onclick="toggleMenu()">×</button>
-</div>
-<ul class="menu-links">
-<li><a href="index.html">Home</a></li>
-<li><a href="assets.html" class="active">Assets</a></li>
-<li><a href="map.html">Map</a></li>
-<li><a href="simulation.html">Simulation</a></li>
-<li><a href="reports.html">Reports</a></li>
-<li><a href="about.html">About</a></li>
-</ul>
-</nav>
+<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+<header><button class="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button><div class="h-logo"><img src="images/logo2.png" alt="Hail Municipality"></div><div class="h-spacer"></div></header>
+<nav class="side-menu" id="sideMenu"><div class="m-hd"><img src="images/logo2.png" alt="Hail Municipality"><button class="close-btn" onclick="toggleMenu()">×</button></div><ul><li><a href="index.html">Home</a></li><li><a href="assets.html" class="active">Assets</a></li><li><a href="map.html">Map</a></li><li><a href="simulation.html">Simulation</a></li><li><a href="reports.html">Reports</a></li><li><a href="about.html">About</a></li></ul></nav>
 <div class="overlay" id="overlay" onclick="toggleMenu()"></div>
-
 <main>
-<div class="section-header"><h2>Assets</h2><p>Browse all systems with their security status</p></div>
-<div class="filters">
-<button class="filter-btn active" data-filter="all">All</button>
-<button class="filter-btn" data-filter="high">High</button>
-<button class="filter-btn" data-filter="medium">Medium</button>
-<button class="filter-btn" data-filter="low">Low</button>
-</div>
-<div class="assets-grid" id="assetsGrid"></div>
+<div class="ph"><h2>Assets</h2><p>Browse all systems with their security status</p></div>
+<div class="filters"><button class="fb active" data-filter="all">All</button><button class="fb" data-filter="high">High</button><button class="fb" data-filter="medium">Medium</button><button class="fb" data-filter="low">Low</button></div>
+<div class="ag" id="assetsGrid"></div>
 </main>
-
-<div class="modal" id="assetModal" onclick="closeModal(event)">
-<div class="modal-content" onclick="event.stopPropagation()">
-<div class="modal-header"><h2 id="modalTitle">System Details</h2><button class="modal-close" onclick="closeModal(event)">×</button></div>
-<div id="modalBody"></div>
-</div>
-</div>
-
-<footer class="main-footer">
-<div class="footer-content">
-<div class="footer-logo"><img src="images/logo1.png" alt="Hail Municipality"></div>
-<div class="footer-references"><h4>References</h4><ul><li>NCA</li><li>ECC</li><li>SDAIA</li></ul></div>
-</div>
-<div class="footer-divider"></div>
-<div class="footer-copyright"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div>
-</footer>
-
+<div class="modal" id="assetModal" onclick="closeModal(event)"><div class="mc2" onclick="event.stopPropagation()"><div class="mh"><h2 id="modalTitle">System Details</h2><button class="mcl" onclick="closeModal(event)">×</button></div><div id="modalBody"></div></div></div>
+<footer><div class="fc"><div class="fl"><img src="images/logo1.png" alt="Hail Municipality"></div><div class="fr"><h4>References</h4><ul><li>National Cybersecurity Authority (NCA)</li><li>Essential Cybersecurity Controls (ECC)</li><li>Saudi Data & AI Authority (SDAIA)</li></ul></div></div><div class="fd"></div><div class="fcop"><p>©️ 2026 Hail Municipality — Cyber Risk Map · All Rights Reserved</p></div></footer>
 <script src="script.js"></script>
 </body>
 </html>
